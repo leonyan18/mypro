@@ -31,8 +31,7 @@ import java.io.IOException;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("controller")
-
+@ComponentScan
 public class WebConfig extends WebMvcConfigurerAdapter {
     private ApplicationContext applicationContext;
     @Autowired
@@ -58,7 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ThymeleafViewResolver viewResolverthyleaf = new ThymeleafViewResolver();
         viewResolverthyleaf.setTemplateEngine(templateEngine());
         /*选其一*/
-        return viewResolverthyleaf;
+        return viewResolvertiles;
     }
     @Bean
     public SpringTemplateEngine templateEngine(){
