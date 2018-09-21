@@ -1,7 +1,6 @@
 package service;
 
 import bean.Customer;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

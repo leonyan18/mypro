@@ -16,4 +16,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
         @Filter(type = FilterType.ANNOTATION,value = EnableWebMvc.class)
 })
 public class RootConfig {
+
 }
