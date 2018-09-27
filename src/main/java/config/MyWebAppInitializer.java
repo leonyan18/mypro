@@ -14,7 +14,7 @@ import javax.servlet.ServletRegistration.Dynamic;
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ WebConfig.class};
+        return new Class<?>[]{WebConfig.class};
     }
     @Override
     protected Class<?>[] getServletConfigClasses() {
