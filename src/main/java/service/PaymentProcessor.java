@@ -2,12 +2,9 @@ package service;
 
 
 /**
- * Simple payment processor implementation.
- * 
- * Shown in brief on page 606, but fleshed out here with a dummy implementation
- * that declines payment for any amount over $20.
- * 
  * @author wallsc
+ * @date 18-9-27 下午4:13
+ * @descripition 支付过程
  */
 public class PaymentProcessor {
    public PaymentProcessor() {}

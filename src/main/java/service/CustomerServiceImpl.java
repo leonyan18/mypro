@@ -2,7 +2,10 @@ package service;
 
 import bean.Customer;
 import org.springframework.stereotype.Service;
-
+/**
+ * @author yan
+ * @date 18-9-27 下午4:13
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
   public CustomerServiceImpl() {}

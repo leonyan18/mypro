@@ -9,6 +9,7 @@ public class CreditCardPayment extends Payment {
     this.authorization = authorization;
   }
   
+  @Override
   public String toString() {
     return "CREDIT:  $" + getAmount() + " ; AUTH: " + authorization;
   }

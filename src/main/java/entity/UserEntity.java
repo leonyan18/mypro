@@ -1,17 +1,15 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author yan
- * @date 18-9-28 下午6:44
+ * @date 18-9-28 下午6:43
  * @descripition
  */
 @Entity
-public class User {
+@Table(name = "user", schema = "spring", catalog = "")
+public class UserEntity {
     private String uid;
     private String username;
     private String password;
@@ -62,12 +60,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserEntity that = (UserEntity) o;
 
-        if (uid != null ? !uid.equals(user.uid) : user.uid != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (authority != null ? !authority.equals(user.authority) : user.authority != null) return false;
+        if (uid != null ? !uid.equals(that.uid) : that.uid != null) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (authority != null ? !authority.equals(that.authority) : that.authority != null) return false;
 
         return true;
     }

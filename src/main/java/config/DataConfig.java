@@ -4,8 +4,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
@@ -14,9 +16,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-import java.util.logging.Logger;
 
+/**
+ * @author yan
+ */
 @Configuration
+@EnableJpaRepositories(basePackages= "dao")
 public class DataConfig {
     /**
      * 数据源配置
@@ -33,8 +38,9 @@ public class DataConfig {
 
     /**
      * sessionFactoryBean
+     * 做jpa的rep时会和entityManagerFactory冲突
      */
-    @Bean
+//    @Bean
     public LocalSessionFactoryBean sessionFactoryBean(DataSource dataSource) {
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
@@ -84,5 +90,11 @@ public class DataConfig {
     public PersistenceAnnotationBeanPostProcessor paPostProcessor(){
         return new PersistenceAnnotationBeanPostProcessor();
     }
-
+    /**
+     * emf?
+     */
+    @Bean
+    public JpaTransactionManager transactionManager() {
+        return new JpaTransactionManager();
+    }
 }

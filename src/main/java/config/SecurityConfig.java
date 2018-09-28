@@ -10,7 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
-
+/**
+ * @author yan
+ * @date 18-9-27 下午4:13
+ * @descripition 安全配置
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,19 +46,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                    .logoutSuccessUrl("/")//退出的位置
+                //退出的位置
+                    .logoutSuccessUrl("/")
                 .and()
                 .rememberMe()
-                    .tokenValiditySeconds(2419200)//有效时间 单位秒
-                    .key("key")//默认为SpringSecured
+                //有效时间 单位秒
+                    .tokenValiditySeconds(2419200)
+                //默认为SpringSecured
+                    .key("key")
                 .and()
                 /**拦截请求*/
                 .authorizeRequests()
-                    .antMatchers("/user/**").authenticated()//问/user/**的需要认证
-                    .antMatchers(HttpMethod.POST,"/pizza").authenticated()//向/pizza的post方法的需要认证
+                //问/user/**的需要认证
+                    .antMatchers("/user/**").authenticated()
+                //向/pizza的post方法的需要认证
+                    .antMatchers(HttpMethod.POST,"/pizza").authenticated()
                     .anyRequest().permitAll()//其他都允许
                 .and()
                 .requiresChannel()
-                    .antMatchers("/").requiresInsecure();//requiresSecure 需要https
+                //requiresSecure 需要https
+                    .antMatchers("/").requiresInsecure();
     }
 }

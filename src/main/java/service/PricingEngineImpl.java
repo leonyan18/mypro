@@ -11,7 +11,10 @@ import bean.Pizza;
 import bean.PizzaSize;
 import org.springframework.stereotype.Service;
 
-@SuppressWarnings("serial")
+/**
+ * @author yan
+ * @date 18-9-27 下午4:13
+ */
 @Service
 public class PricingEngineImpl 
     implements PricingEngine, Serializable {

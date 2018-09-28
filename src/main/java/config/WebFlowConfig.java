@@ -14,7 +14,7 @@ import org.springframework.webflow.security.SecurityFlowExecutionListener;
 /**
  * @author yan
  * @date 2018/9/12 18:30
- * @descripition
+ * @descripition webFlow配置
  */
 @Configuration
 @ComponentScan("flow")

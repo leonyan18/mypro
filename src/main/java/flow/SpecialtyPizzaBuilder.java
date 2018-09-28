@@ -10,7 +10,11 @@ import org.springframework.webflow.execution.RequestContext;
 
 import bean.Pizza;
 import bean.Topping;
-
+/**
+ * @author yan
+ * @date 18-9-27 下午4:13
+ * @descripition 生成pizza
+ */
 public class SpecialtyPizzaBuilder implements Action {
    private static final Logger LOGGER = Logger
                      .getLogger(SpecialtyPizzaBuilder.class);

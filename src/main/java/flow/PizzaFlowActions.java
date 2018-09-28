@@ -15,7 +15,11 @@ import bean.Payment;
 import bean.PaymentDetails;
 import service.CustomerNotFoundException;
 import service.CustomerService;
-
+/**
+ * @author yan
+ * @date 18-9-27 下午4:13
+ * @descripition 购买pizza的动作
+ */
 @Component
 public class PizzaFlowActions {
   private static final Logger LOGGER = getLogger(PizzaFlowActions.class);
