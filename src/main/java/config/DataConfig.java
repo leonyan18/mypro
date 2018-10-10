@@ -32,7 +32,7 @@ public class DataConfig {
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/spring");
         ds.setUsername("root");
-        ds.setPassword("0709");
+        ds.setPassword("yanchenxi");
         return ds;
     }
 
