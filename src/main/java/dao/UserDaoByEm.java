@@ -18,11 +18,14 @@ import java.util.List;
 @Repository
 @Transactional(rollbackFor = Exception.class)
 public class UserDaoByEm implements UserDao{
+
     @PersistenceContext
     private EntityManager entityManager;
 
-    public User findByUsername(String name) {
-        return entityManager.find(User.class,name);
+    public User findByUsername(String username) {
+        User user=new User();
+        user.setUsername(username);
+        return entityManager.find(User.class,user);
     }
 
     public List<User> findAll() {

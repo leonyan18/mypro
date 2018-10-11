@@ -1,7 +1,9 @@
 package config;
 
+import entity.User;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,6 +24,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableJpaRepositories(basePackages= "dao")
+@ComponentScan(basePackages = "dao")
 public class DataConfig {
     /**
      * 数据源配置

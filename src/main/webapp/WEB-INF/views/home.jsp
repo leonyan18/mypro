@@ -8,8 +8,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:forEach var="user" items="${test}">
-<c:out value="user.id"/><br/>
-    <c:out value="user.username"/><br/>
-</c:forEach>
+<c:out value="${test.username}"/><br/>
+    <c:out value="${test.username}"/><br/>
 <a href="<s:url value="/register"/>"><button>注册</button></a>

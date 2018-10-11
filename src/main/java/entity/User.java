@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @author yan
@@ -11,7 +12,7 @@ import javax.persistence.Id;
  * @descripition
  */
 @Entity
-public class User {
+public class User implements Serializable {
     private String uid;
     private String username;
     private String password;
@@ -79,5 +80,10 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (authority != null ? authority.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return uid+"\n"+username+"\n"+password+"\n"+authority+"\n";
     }
 }

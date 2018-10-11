@@ -7,7 +7,10 @@ import java.util.List;
 import org.apache.commons.lang3.text.WordUtils;
 
 public enum Topping implements Serializable {
-  PEPPERONI, 
+  /**
+   * pizza的料
+   */
+  PEPPERONI,
   SAUSAGE, 
   HAMBURGER,
   MUSHROOM, 
