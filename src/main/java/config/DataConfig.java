@@ -1,6 +1,5 @@
 package config;
 
-import entity.User;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -25,6 +25,7 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages= "dao")
 @ComponentScan(basePackages = "dao")
+@EnableTransactionManagement
 public class DataConfig {
     /**
      * 数据源配置
@@ -56,7 +57,7 @@ public class DataConfig {
     /**
      * 异常转换
      */
-    @Bean
+//    @Bean
     public BeanPostProcessor persistenceTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
@@ -94,7 +95,7 @@ public class DataConfig {
         return new PersistenceAnnotationBeanPostProcessor();
     }
     /**
-     * emf?
+     * jpa
      */
     @Bean
     public JpaTransactionManager transactionManager() {

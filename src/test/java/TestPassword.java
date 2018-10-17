@@ -6,9 +6,5 @@ public class TestPassword {
         PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         String ans=passwordEncoder.encode("0709");
         System.out.println(ans);
-        ans=passwordEncoder.encode("0709");
-        System.out.println(ans);
-        ans=passwordEncoder.encode("0709");
-        System.out.println(ans);
     }
 }

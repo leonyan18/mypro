@@ -20,7 +20,7 @@ public class TestRedis {
     @Test
     public void redisInsert(){
         User user=new User();
-        user.setAuthority(new Byte("1"));
+        user.setAuthority(true);
         user.setUid("1");
         user.setUsername("yan");
         user.setPassword("132156");

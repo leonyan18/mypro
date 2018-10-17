@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
@@ -31,10 +32,12 @@ public class TestDao {
     @Qualifier("userDaoByEm")
     UserDao userDao;
     @Test
+    @Transactional(rollbackFor = Exception.class)
     public void testUserDaoByEm(){
-        User user1=userDao.findByUsername("1");
+        User user1=new User("2","xi","1",true);
+        userDao.saveUser(user1);
         System.out.println(user1.toString());
-        List<User> userList=userRepository.findAll();
+        List<User> userList=userDao.findAll();
 //        System.out.println(userList);
         for (User user:userList){
             System.out.println(user.toString());

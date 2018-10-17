@@ -21,4 +21,6 @@ public interface UserDao{
      * @return
      */
     List<User> findAll();
+
+    void saveUser(User user);
 }

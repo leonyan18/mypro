@@ -1,8 +1,6 @@
 package dao;
 
-import bean.People;
 import entity.User;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +21,13 @@ public class UserDaoByEm implements UserDao{
     private EntityManager entityManager;
 
     public User findByUsername(String username) {
-        User user=new User();
-        user.setUsername(username);
-        return entityManager.find(User.class,user);
+        return (User) entityManager.createQuery("FROM User where username=:A ").setParameter("A",username).getSingleResult();
     }
 
     public List<User> findAll() {
-        return null;
+        return (List<User>) entityManager.createQuery("FROM User ").getResultList();
+    }
+    public void saveUser(User user) {
+        entityManager.persist(user);
     }
 }

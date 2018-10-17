@@ -16,7 +16,17 @@ public class User implements Serializable {
     private String uid;
     private String username;
     private String password;
-    private Byte authority;
+    private Boolean authority;
+
+    public User(String uid, String username, String password, Boolean authority) {
+        this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+    }
+
+    public User() {
+    }
 
     @Id
     @Column(name = "uid")
@@ -50,11 +60,11 @@ public class User implements Serializable {
 
     @Basic
     @Column(name = "authority")
-    public Byte getAuthority() {
+    public Boolean getAuthority() {
         return authority;
     }
 
-    public void setAuthority(Byte authority) {
+    public void setAuthority(Boolean authority) {
         this.authority = authority;
     }
 
