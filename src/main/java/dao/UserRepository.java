@@ -2,6 +2,7 @@ package dao;
 
 import entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @date 18-9-27 下午4:29
  * @descripition
  */
-public interface UserRepository extends JpaRepository<User,String> {
+public interface UserRepository extends JpaRepository<User,Integer> {
     /**
      * 通过名字查询
      * @param username
@@ -20,9 +21,9 @@ public interface UserRepository extends JpaRepository<User,String> {
     User findByUsername(String username);
 
     /**
-     * 通过名字查询并排序
-     * @param username
+     * 查询通过名字排序
      * @return
      */
-    List<User> findByUsernameOrderByUidAsc(String username);
+    @Query("FROM User ORDER BY username")
+    List<User> findAll();
 }

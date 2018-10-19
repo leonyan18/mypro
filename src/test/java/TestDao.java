@@ -1,21 +1,18 @@
+import config.CacheConfig;
 import config.DataConfig;
-import config.RootConfig;
 import dao.UserDao;
-import dao.UserDaoByEm;
 import dao.UserRepository;
+import entity.Phone;
 import entity.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+import service.UserService;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -24,23 +21,23 @@ import java.util.List;
  * @descripition
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DataConfig.class})
+@ContextConfiguration(classes = {DataConfig.class, CacheConfig.class})
 public class TestDao {
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    @Qualifier("userDaoByEm")
-    UserDao userDao;
+    UserService userService;
     @Test
-    @Transactional(rollbackFor = Exception.class)
     public void testUserDaoByEm(){
-        User user1=new User("2","xi","1",true);
-        userDao.saveUser(user1);
-        System.out.println(user1.toString());
-        List<User> userList=userDao.findAll();
-//        System.out.println(userList);
+        userService.cacheClear();
+        List<User> userList=userService.findAllUser();
         for (User user:userList){
-            System.out.println(user.toString());
+            System.out.println(user.getUsername());
+            System.out.println(user.getPhone().size());
         }
+        System.out.println("==================================");
+        userList=userService.findAllUser();
+        for (User user:userList){
+            System.out.println(user.getUsername());
+        }
+        System.out.println("==================================");
     }
 }

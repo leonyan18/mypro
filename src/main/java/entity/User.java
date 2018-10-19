@@ -1,40 +1,38 @@
 package entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author yan
- * @date 18-9-28 下午6:44
+ * @date 2018/10/18 13:18
  * @descripition
  */
 @Entity
 public class User implements Serializable {
-    private String uid;
+    private List<Phone> phone;
+    private Integer uid;
     private String username;
     private String password;
     private Boolean authority;
 
-    public User(String uid, String username, String password, Boolean authority) {
-        this.uid = uid;
-        this.username = username;
-        this.password = password;
-        this.authority = authority;
+    @OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
+    public List<Phone> getPhone() {
+        return phone;
     }
 
-    public User() {
+    public void setPhone(List<Phone> phone) {
+        this.phone = phone;
     }
 
     @Id
     @Column(name = "uid")
-    public String getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
@@ -90,10 +88,5 @@ public class User implements Serializable {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (authority != null ? authority.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return uid+"\n"+username+"\n"+password+"\n"+authority+"\n";
     }
 }

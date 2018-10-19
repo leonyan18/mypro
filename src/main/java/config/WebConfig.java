@@ -52,12 +52,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 org.springframework.web.servlet.view.JstlView.class
         );
         /*解析tiles*/
-        TilesViewResolver viewResolvertiles=new TilesViewResolver();
+        TilesViewResolver viewResolverTiles=new TilesViewResolver();
         /*解析thyleaf*/
         ThymeleafViewResolver viewResolverthyleaf = new ThymeleafViewResolver();
         viewResolverthyleaf.setTemplateEngine(templateEngine());
         /*选其一*/
-        return viewResolvertiles;
+        return viewResolverTiles;
+
     }
     @Bean
     public SpringTemplateEngine templateEngine(){

@@ -22,5 +22,9 @@ public interface UserDao{
      */
     List<User> findAll();
 
+    /**
+     * 存储用户
+     * @param user
+     */
     void saveUser(User user);
 }

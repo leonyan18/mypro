@@ -57,7 +57,7 @@ public class DataConfig {
     /**
      * 异常转换
      */
-//    @Bean
+    @Bean
     public BeanPostProcessor persistenceTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
