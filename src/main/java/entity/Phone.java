@@ -1,30 +1,19 @@
 package entity;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * @author yan
- * @date 2018/10/18 13:18
+ * @date 2018/10/21 20:03
  * @descripition
  */
 @Entity
 public class Phone implements Serializable {
-    private User user;
     private Integer pid;
     private String ptype;
-
-    @ManyToOne
-    @JoinColumn(name = "uid", referencedColumnName = "uid")
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    private User user;
 
     @Id
     @Column(name = "pid")
@@ -46,16 +35,23 @@ public class Phone implements Serializable {
         this.ptype = ptype;
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Phone phone = (Phone) o;
 
-        if (pid != null ? !pid.equals(phone.pid) : phone.pid != null) return false;
-        if (ptype != null ? !ptype.equals(phone.ptype) : phone.ptype != null) return false;
+        if (pid != null ? !pid.equals(phone.pid) : phone.pid != null) {
+            return false;
+        }
+        if (ptype != null ? !ptype.equals(phone.ptype) : phone.ptype != null) {
+            return false;
+        }
 
         return true;
     }
@@ -64,7 +60,18 @@ public class Phone implements Serializable {
     public int hashCode() {
         int result = pid != null ? pid.hashCode() : 0;
         result = 31 * result + (ptype != null ? ptype.hashCode() : 0);
-        result = 31 * result + (user.getUid() != null ? user.getUid().hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinTable(name = "user_phone", catalog = "", schema = "spring",
+            joinColumns = @JoinColumn(name = "pid", referencedColumnName = "pid"),
+            inverseJoinColumns = @JoinColumn(name = "uid", referencedColumnName = "uid"))
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

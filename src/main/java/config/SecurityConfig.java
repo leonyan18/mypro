@@ -22,11 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /**手动配置*/
+        //手动配置
         auth.inMemoryAuthentication()
+                //启用内存用户存储手动添加
                 .withUser("user").password("password").roles("USER").and()
                 .withUser("admin").password("password").roles("USER","ADMIN");
-        /**通过数据源配置*/
+        //通过数据源配置
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(
@@ -40,9 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-          /**默认表单认证 提交到/login*/
+        //默认表单认证 提交到/login
         http.formLogin()
-//                    .loginPage("/login")//表单提交位置
+                //.loginPage("/login")//表单提交位置
                 .and()
                 .logout()
                 .logoutUrl("/logout")

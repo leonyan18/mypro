@@ -11,8 +11,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.JacksonJsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 /**
  * @author yan
  * @date 2018/10/10 12:43
@@ -36,8 +35,6 @@ public class CacheConfig {
         RedisTemplate<String, User> redis=new RedisTemplate<String, User>();
         redis.setConnectionFactory(connectionFactory);
         redis.afterPropertiesSet();
-//        redis.setKeySerializer(new StringRedisSerializer());
-//        redis.setValueSerializer(new JacksonJsonRedisSerializer<User>(User.class));
         return redis;
     }
     @Bean

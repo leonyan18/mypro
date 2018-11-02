@@ -44,7 +44,7 @@ public class DataConfig {
      * sessionFactoryBean
      * 做jpa的rep时会和entityManagerFactory冲突
      */
-//    @Bean
+//    @Bean("sf")
     public LocalSessionFactoryBean sessionFactoryBean(DataSource dataSource) {
         LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
         sfb.setDataSource(dataSource);
@@ -80,11 +80,15 @@ public class DataConfig {
      */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,JpaVendorAdapter jpaVendorAdapter){
-            LocalContainerEntityManagerFactoryBean entityManagerFactory=new LocalContainerEntityManagerFactoryBean();
-            entityManagerFactory.setDataSource(dataSource);
-            entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
-            entityManagerFactory.setPackagesToScan("entity");
-            return entityManagerFactory;
+        LocalContainerEntityManagerFactoryBean entityManagerFactory=new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
+        Properties jpa=new Properties();
+        jpa.setProperty("hibernate.hbm2ddl.auto","update");
+        jpa.setProperty("hibernate.format_sql","false");
+        entityManagerFactory.setJpaProperties(jpa);
+        entityManagerFactory.setPackagesToScan("entity");
+        return entityManagerFactory;
     }
 
     /**

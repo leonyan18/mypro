@@ -18,7 +18,7 @@ import java.util.List;
 public class UserDaoByEm implements UserDao{
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private  EntityManager entityManager;
 
     public User findByUsername(String username) {
         return (User) entityManager.createQuery("FROM User where username=:A ").setParameter("A",username).getSingleResult();

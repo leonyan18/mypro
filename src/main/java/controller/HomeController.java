@@ -1,12 +1,14 @@
 package controller;
 
-import dao.UserDao;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import service.UserService;
+
+import java.util.List;
 
 /**
  * @author yan
@@ -16,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
-    @Autowired
-    @Qualifier("userDaoByEm")
-    UserDao userDao;
+
     @RequestMapping(value = "",method = RequestMethod.GET)
     public String home(Model model){
         return "home";

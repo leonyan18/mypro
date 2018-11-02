@@ -1,14 +1,10 @@
 import config.CacheConfig;
 import config.DataConfig;
-import dao.UserDao;
 import dao.UserRepository;
-import entity.Phone;
 import entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.UserService;
@@ -25,6 +21,8 @@ import java.util.List;
 public class TestDao {
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
     @Test
     public void testUserDaoByEm(){
         userService.cacheClear();
@@ -39,5 +37,10 @@ public class TestDao {
             System.out.println(user.getUsername());
         }
         System.out.println("==================================");
+    }
+    @Test
+    public void testUserRepository(){
+        User user=userRepository.findByUsername("yan");
+        System.out.println(user);
     }
 }
