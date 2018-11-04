@@ -9,17 +9,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="//cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
-<script src="https://raw.githubusercontent.com/jmesnil/stomp-websocket/master/lib/stomp.js"/>
+<script src="<s:url value="/resources/stomp.js"/>"></script>
 <script>
-    var url='/marcopolo';
+    var url='http://'+window.location.host+'/marcopolo';
     var socket=new SockJS(url);
     console.info(socket.url);
     var stomp=Stomp.over(socket);
     var payload=JSON.stringify({'message':'Marco!'});
     stomp.connect('guest','guest',function (frame) {
-        stomp.send("/marco",{},payload);
+        stomp.send("/app/marco",{},payload);
+        stomp.subscribe("/topic/marco",handleOneTime)
     });
-    // websocket
+        // websocket
     // socket.onopen=function () {
     //     console.log('opening');
     //     sayMarco();
@@ -37,6 +38,21 @@
     //     console.log("sending marco");
     //     socket.send("Marco!");
     // }
+    function handleOneTime(message) {
+        console.log('Received: ', message);
+        sayMarco();
+    }
+    function handlePolo(message) {
+        console.log('Received: ', message);
+        if (JSON.parse(message.body).message === 'Polo!') {
+            setTimeout(function(){sayMarco()}, 2000);
+        }
+    }
+    function sayMarco() {
+        console.log('Sending Marco!');
+        stomp.send("/app/marco", {},
+            JSON.stringify({ 'message': 'Marco!' }));
+    }
 </script>
 <c:out value="${test.username}"/><br/>
     <c:out value="${test.username}"/><br/>

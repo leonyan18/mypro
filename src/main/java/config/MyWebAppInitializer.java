@@ -2,6 +2,7 @@ package config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.persistence.criteria.Root;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
@@ -14,11 +15,11 @@ import javax.servlet.ServletRegistration.Dynamic;
 public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{WebConfig.class};
+        return new Class<?>[]{RootConfig.class};
     }
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{ RootConfig.class};
+        return new Class<?>[]{ WebConfig.class};
     }
     @Override
     protected String[] getServletMappings() {

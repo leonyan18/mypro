@@ -15,7 +15,12 @@ import websocket.Shout;
 public class MarcoController {
     private static final Logger logger = LoggerFactory.getLogger(MarcoController.class);
     @MessageMapping("/marco")
-    public void handleShout(Shout incoming){
+    public Shout handleShout(Shout incoming){
+        System.out.println("++++++++++++");
         logger.info("Received message"+ incoming.getMessage());
+        try { Thread.sleep(2000); } catch (InterruptedException e) {}
+        Shout outgoing = new Shout();
+        outgoing.setMessage("Polo!");
+        return outgoing;
     }
 }
