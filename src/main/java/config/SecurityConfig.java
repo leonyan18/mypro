@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 //启用内存用户存储手动添加
                 .withUser("user").password("password").roles("USER").and()
+                .passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password("password").roles("USER","ADMIN");
         //通过数据源配置
         auth.jdbcAuthentication()
